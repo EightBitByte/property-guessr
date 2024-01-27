@@ -9,3 +9,10 @@ A property guessing game based on the Melissa API and (TBD) API.
 3. run `cd app`
 4. run `npm install`
 5. run `npm run dev` to run website on localhost!
+
+## Solving an issue
+1. Create a new branch with `git checkout -b <branch-name>`
+2. Do the issue code
+3. `commit` your code and `push`
+4. Navigate to your branch and create a pull request on GitHub
+5. Profit? 
