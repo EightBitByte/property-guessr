@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Toolbar from "./components/Toolbar"
+import Toolbar from "./components/toolbarModals/Toolbar"
 import Game from './components/Game'
 import SelectMenu from './components/Select'
 
