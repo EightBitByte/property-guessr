@@ -12,9 +12,7 @@ export default function Toolbar() {
 
     return (
         <>
-        <div className="center">
-            <SettingsModal></SettingsModal>
-        </div>
+        <SettingsModal></SettingsModal>
         <div className="blur"></div>
         <div id="toolbar-wrap">
             <button className="tool-btn">
