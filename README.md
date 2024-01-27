@@ -8,3 +8,4 @@ A property guessing game based on the Melissa API and (TBD) API.
 2. clone the repo and open terminal
 3. run `cd app`
 4. run `npm install`
+5. run `npm run dev` to run website on localhost!
