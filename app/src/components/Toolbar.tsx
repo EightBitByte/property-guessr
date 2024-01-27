@@ -14,6 +14,14 @@ export default function Toolbar() {
         setProfileVisible(!profileVisible);
     };
 
+    const toggleSettingsVisibility = () => {
+        setSettingsVisible(!settingsVisible);
+    };
+
+    const toggleLeaderboardVisibility = () => {
+        setLeaderboardVisible(!leaderboardVisible);
+    };
+
     return (
         <>
         {profileVisible && <ProfileModal profileToggle={toggleProfileVisibility}></ProfileModal>}
