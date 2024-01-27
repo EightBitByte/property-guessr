@@ -1,4 +1,4 @@
-import './modal.css'
+import './profile-modal.css'
 import Modal from './Modal.tsx'
 import { MouseEventHandler } from 'react'
 import peteIcon from '../../public/pete.jpg'
