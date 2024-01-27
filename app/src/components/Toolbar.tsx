@@ -15,13 +15,13 @@ export default function Toolbar() {
         setProfileVisible(!profileVisible);
     };
 
-    const toggleLeaderboardVisibility = () => {
-        setLeaderboardVisible(!leaderboardVisible);
-    }
-
     const toggleSettingsVisibility = () => {
         setSettingsVisible(!settingsVisible);
-    }
+    };
+
+    const toggleLeaderboardVisibility = () => {
+        setLeaderboardVisible(!leaderboardVisible);
+    };
 
     return (
         <>

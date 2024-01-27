@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import Test from "./components/test"
+import Toolbar from "./components/Toolbar"
+import Game from './components/Game'
 
 function App() {
 
   return (
     <>
-      <Test></Test>
+      <Toolbar></Toolbar> 
+      <Game></Game>
     </>
   )
 }
