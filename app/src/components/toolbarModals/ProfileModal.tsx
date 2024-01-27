@@ -1,10 +1,10 @@
 import './profile-modal.css'
 import Modal from './Modal.tsx'
 import { MouseEventHandler } from 'react'
-import peteIcon from '../../public/pete.jpg'
-import newIcon from '../../public/plant.svg'
-import topTenIcon from '../../public/medal.svg'
-import accurateIcon from '../../public/accurate.svg'
+import peteIcon from '/pete.jpg'
+import newIcon from '/plant.svg'
+import topTenIcon from '/medal.svg'
+import accurateIcon from '/accurate.svg'
 
 export default function ProfileModal(props: {toggleFn: MouseEventHandler<HTMLButtonElement>}) {
     return (

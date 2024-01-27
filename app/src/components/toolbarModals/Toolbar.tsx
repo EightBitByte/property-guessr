@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './toolbar.css'
-import profileIcon from '../../public/account.svg'
-import settingsIcon from '../../public/settings.svg'
-import leaderIcon from '../../public/leaderboard.svg'
+import profileIcon from '/account.svg'
+import settingsIcon from '/settings.svg'
+import leaderIcon from '/leaderboard.svg'
 import ProfileModal from './ProfileModal'
 import LeaderboardModal from './LeaderboardModal'
 

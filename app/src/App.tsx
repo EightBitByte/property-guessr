@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Toolbar from "./components/toolbarModals/Toolbar"
 import Game from './components/Game'
-import SelectMenu from './components/Select'
 
 function App() {
 
@@ -9,7 +8,6 @@ function App() {
     <> 
       <Game></Game>
       <Toolbar></Toolbar>
-      <SelectMenu></SelectMenu>
     </>
   )
 }
