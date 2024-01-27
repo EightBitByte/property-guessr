@@ -1,0 +1,20 @@
+:root {
+    --modal-width: 500px;
+    --modal-height: 500px;
+}
+
+.center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+}
+
+.modal {
+    border: none;
+    background-color: pink;
+    width: var(--modal-width);
+    height: var(--modal-height);
+    margin-left: calc(var(--modal-width) / -2);
+    margin-top: calc(var(--modal-height) / -2);
+}
