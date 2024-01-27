@@ -6,9 +6,9 @@ import newIcon from '../../public/plant.svg'
 import topTenIcon from '../../public/medal.svg'
 import accurateIcon from '../../public/accurate.svg'
 
-export default function ProfileModal(props: {profileToggle: MouseEventHandler<HTMLButtonElement>}) {
+export default function ProfileModal(props: {toggleFn: MouseEventHandler<HTMLButtonElement>}) {
     return (
-        <Modal toggleFunc={props.profileToggle} title="Profile">
+        <Modal toggleFunc={props.toggleFn} title="Profile">
         <div className="profile-hero">
             <img src={peteIcon}></img>
             <div className="profile-info">
