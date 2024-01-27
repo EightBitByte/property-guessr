@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "./Property.css"
-import { motion, useAnimationControls } from "framer-motion"
+import { motion, AnimationControls } from "framer-motion"
  
 type PropertyData = {
 
@@ -11,12 +11,12 @@ const TEST_LON = -117.8731
 
 const MY_KEY = "AIzaSyAF6wI4shBdxCHqpcn0Sl5VFG8L57Kk7Eg"
 
-export default function Property(props: any) {
+export default function Property(props: {divAnim: AnimationControls}) {
 
     const [propertyData, setPropertyData] = useState({})
 
     return (
-        <motion.div className="property-bg" style={{backgroundImage: 'url("https://maps.googleapis.com/maps/api/streetview?location=33.6149%2C-117.8731&size=800x1200&key=AIzaSyAF6wI4shBdxCHqpcn0Sl5VFG8L57Kk7Eg")'}}>
+        <motion.div animate={props.divAnim} className="property-bg" style={{backgroundImage: 'url("https://maps.googleapis.com/maps/api/streetview?location=33.6149%2C-117.8731&size=800x1200&key=AIzaSyAF6wI4shBdxCHqpcn0Sl5VFG8L57Kk7Eg")'}}>
             <div className="property-overlay">
                 <Title address="420 Pluh Ave" year="2013" price={1000000} priceShown={true}/>
                 <StreetPreview lat={TEST_LAT} lon={TEST_LON} mode=""></StreetPreview>
