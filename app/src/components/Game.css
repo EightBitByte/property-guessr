@@ -1,0 +1,17 @@
+#root {
+    padding: 0;
+}
+
+.game {
+
+}
+
+.property-container {
+    display: flex;
+
+}
+
+.property-divider {
+    height: 100%;
+    width: 6px;
+}
