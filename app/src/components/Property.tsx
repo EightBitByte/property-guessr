@@ -12,7 +12,7 @@ export default function Property(props: any) {
     const [propertyData, setPropertyData] = useState({})
 
     return (
-        <div class="propertyCard">
+        <div className="propertyCard">
             <Title address="420 Pluh Ave" year="2013" price={1000000} priceShown={true}/>
             <StreetPreview lon={33.6149} lat={-117.8731} mode=""></StreetPreview>
         </div>
