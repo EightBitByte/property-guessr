@@ -1,0 +1,45 @@
+:root {
+    --gold-rank: #dfa400;
+    --silver-rank: #a8a8a8;
+    --bronze-rank: #915e00;
+}
+
+.first {
+    color: var(--gold-rank);
+}
+
+.second {
+    color: var(--silver-rank);
+}
+
+.third {
+    color: var(--bronze-rank);
+}
+
+.leaderboard-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.board-entry, #leaderboard-header {
+    display: grid;
+    padding: 0 1rem;
+    grid-template-columns: 2fr 7fr 4fr 3fr;
+    text-align: left;
+}
+
+#leaderboard-header {
+    background-color: #4b4b4b;
+}
+
+.board-entry:nth-child(2n) {
+    background-color: #727272;
+}
+
+dialog.modal {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
