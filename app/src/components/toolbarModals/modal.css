@@ -24,6 +24,8 @@
 
 .modal {
     border: none;
+    border-radius: 6px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
     background-color: grey;
     width: var(--modal-width);
     height: var(--modal-height);
