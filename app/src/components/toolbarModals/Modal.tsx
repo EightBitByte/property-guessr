@@ -5,7 +5,7 @@ import './modal.css'
 export default function Modal(props: {toggleFunc: MouseEventHandler, title: string, children: ReactNode}) {
     return (
         <div className="center">
-            <dialog className="modal" open>
+            <dialog className="modal" id={`${props.title.toLowerCase()}-modal`} open>
                 <div className="modal-header">
                     <button className="back-btn" onClick={props.toggleFunc}>
                         <img src={backIcon}></img>
