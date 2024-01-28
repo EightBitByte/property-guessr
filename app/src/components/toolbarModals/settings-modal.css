@@ -1,0 +1,24 @@
+.settings-hero{
+    display: felx;
+    padding: 1rem, 3rem;
+    gap: 2rem;
+}
+
+.settings-info{
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.settings-info h1{
+    font-size: 2.5rem;
+}
+
+.settings-hero img{
+    width: 200px;
+    border-radius: 50%;
+}
+
+
