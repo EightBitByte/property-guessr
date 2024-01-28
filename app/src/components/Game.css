@@ -2,12 +2,16 @@
     
 }
 
-.property-container {
-    display: flex;
-
-}
-
 .property-divider {
     height: 100%;
     width: 6px;
+}
+
+.property1 {
+    position: absolute;
+}
+
+.property2 {
+    position: absolute;
+    left: 50%;
 }
