@@ -1,0 +1,19 @@
+.streak-center {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.streak-counter {
+    font-weight: 500;
+    font-size: xx-large;
+    margin-top: 30%;
+}

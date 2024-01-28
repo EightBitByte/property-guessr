@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { motion, useAnimationControls } from "framer-motion"
 import "./Game.css"
 import SelectMenu from './Select'
+import Streak from "./Streak"
 
 import { PropertyData, SAMPLE_PROPERTY } from "../utils/property.types"
 import exampleJSON from "../utils/examples.json"
@@ -27,6 +28,7 @@ export default function Game() {
 
     const [property1, setProperty1] = useState<PropertyData>(SAMPLE_PROPERTY)
     const [property2, setProperty2] = useState<PropertyData>(SAMPLE_PROPERTY)
+    const [streak, setStreak] = useState<number>(0)
 
     useEffect (() => {
         async function loadPropertyData () {
@@ -51,16 +53,26 @@ export default function Game() {
 
     function chooseHigher() {
         if (property1.assessed_total <= property2.assessed_total)
+        {
             setMenuState("next")
+            setStreak(streak + 1)
+        }
         else
+        {
             setMenuState("reset")
+        }
     }
 
     function chooseLower() {
         if (property1.assessed_total >= property2.assessed_total)
+        {
             setMenuState("next")
+            setStreak(streak + 1)
+        }
         else
+        {
             setMenuState("reset")
+        }
     }
 
     function nextProperty() {
@@ -71,6 +83,7 @@ export default function Game() {
     function resetGame() {
         setMenuState("select")
         setProperty1(property2)
+        setStreak(0)
     }
 
     return (
@@ -79,6 +92,7 @@ export default function Game() {
                 <PropertySlidingView property1={property1} property2={property2} menuState={menuState}/>
             </div>
             <SelectMenu highFunc={chooseHigher} lowFunc={chooseLower} nextFunc={nextProperty} resetFunc={resetGame} screen={menuState}></SelectMenu>
+            <Streak streak={streak}/>
         </>
     )
 }
