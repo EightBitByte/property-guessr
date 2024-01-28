@@ -1,6 +1,8 @@
+import { UserData } from "../../utils/property.types";
 import Modal from "./Modal";
 import "./leaderboard-modal.css"
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
+import { getTopUsers } from "../requests"
 
 function getLeaderClass(ranking: number) {
     switch(ranking) {
@@ -41,6 +43,17 @@ function LeaderboardEntry(props: {ranking: number, username: string, accuracy: n
 }
 
 function LeaderboardModal(props: {toggleFn: MouseEventHandler<HTMLButtonElement>}) {
+
+    const [users, setUsers] = useState<UserData[]>([])
+
+    useEffect(() => {
+        async function loadUserData() {
+            setUsers(await getTopUsers())
+        }
+
+        loadUserData()
+    }, [])
+
     return (
         <Modal toggleFunc={props.toggleFn} title="Leaderboard">
             <div className="leaderboard-wrapper">
@@ -50,37 +63,13 @@ function LeaderboardModal(props: {toggleFn: MouseEventHandler<HTMLButtonElement>
                     <h3>Accuracy</h3>
                     <h3>Streak</h3>
                 </div>
-                <LeaderboardEntry ranking={1} username="BestGamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={2} username="BetterGamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={3} username="OkayGamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={4} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={5} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={6} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={7} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={8} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={9} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={10} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={11} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={12} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={13} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={14} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={15} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={16} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={17} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={18} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={19} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={20} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={21} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={22} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={23} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={24} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={25} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={26} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={27} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={28} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={29} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={30} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
-                <LeaderboardEntry ranking={31} username="Gamer" accuracy={0.99} streak={27}></LeaderboardEntry>
+
+                {
+                    users.map( (user: UserData, i: number) => {
+                        let userAccuracy = Math.round( (user.correct_guesses / user.total_guesses) * 100) / 100
+                        return <LeaderboardEntry ranking={i + 1} username={user.username} accuracy={userAccuracy} streak={user.streak}></LeaderboardEntry>
+                    } )
+                }
             </div>
         </Modal>
     )
