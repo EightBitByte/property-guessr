@@ -1,6 +1,6 @@
 .property-bg {
     background-size: cover;
-    width: calc(50vw - 3px);
+    width: 50vw;
     height: 100vh;
 }
 
