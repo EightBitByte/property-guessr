@@ -1,11 +1,29 @@
 import { useState, useEffect } from "react"
-import { PropertyData, SAMPLE_PROPERTY } from "../utils/property.types"
-import { getPropertyData } from "./requests"
-import { updateUserData } from "./requests"
+import { PropertyData, SAMPLE_PROPERTY, UserData } from "../utils/property.types"
+import { getPropertyData, updateUserData } from "./requests"
 
 import SelectMenu from './Select'
 import Streak from "./Streak"
 import PropertySlidingView from "./PropertySlide"
+import LoginModal from "./toolbarModals/LoginModal"
+
+
+function updateUserStreak(currentStreak: number)
+{
+    const userData: UserData = JSON.parse(localStorage.getItem("userData"))
+    
+    const bestStreak = userData.streak < currentStreak ? currentStreak : userData.streak
+
+    const newData: UserData = {
+        username: userData.username,
+        correct_guesses: userData.correct_guesses + currentStreak,
+        total_guesses: userData.total_guesses + currentStreak + 1,
+        streak: bestStreak
+    }
+
+    localStorage.setItem("userData", JSON.stringify(newData))
+    updateUserData()
+}
 
 
 export default function Game() {
@@ -20,7 +38,6 @@ export default function Game() {
     useEffect (() => {
         async function loadPropertyData () {
             setProperty1(await getPropertyData())
-            console.log("Initial property get")
         }
 
         loadPropertyData()
@@ -29,7 +46,6 @@ export default function Game() {
     useEffect (() => {
         async function getNewProperty () {
             setProperty2(await getPropertyData())
-            console.log("New property get")
         }
         
         if (menuState == "select")
@@ -45,12 +61,12 @@ export default function Game() {
         }
         else
         {
-            if (localStorage.getItem("userData") == "{}")
-                setShowLogin(true)
-            else
-                updateUserData(JSON.parse(localStorage.getItem("userData")))
-
             setMenuState("reset")
+
+            if (localStorage.getItem("userData") == null)
+                setTimeout(() => setShowLogin(true), 1500)
+            else
+                updateUserStreak(streak)
         }
     }
 
@@ -62,12 +78,12 @@ export default function Game() {
         }
         else
         {
-            if (localStorage.getItem("userData") == null)
-                setShowLogin(true)
-            else
-                updateUserData(JSON.parse(localStorage.getItem("userData")))
-
             setMenuState("reset")
+
+            if (localStorage.getItem("userData") == null)
+                setTimeout(() => setShowLogin(true), 1500)
+            else
+                updateUserStreak(streak)
         }
     }
 
@@ -84,11 +100,12 @@ export default function Game() {
 
     return (
         <>
-            {showLogin ? null : null}
             <div className="game">
                 <PropertySlidingView property1={property1} property2={property2} menuState={menuState}/>
             </div>
             <SelectMenu highFunc={chooseHigher} lowFunc={chooseLower} nextFunc={nextProperty} resetFunc={resetGame} screen={menuState}></SelectMenu>
+            {showLogin && <LoginModal toggleFn={() => setShowLogin(false)} submitMode="update" currentStreak={streak}></LoginModal>}
+            {showLogin && <div className="blur" onClick={() => setShowLogin(false)}></div>}
             <Streak streak={streak}/>
         </>
     )

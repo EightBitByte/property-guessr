@@ -1,5 +1,5 @@
 import exampleJSON from "../utils/examples.json"
-import { PropertyData, UserData } from "../utils/property.types"
+import { PropertyData, UserData} from "../utils/property.types"
 
 const BASE_URL = ""
 const API_KEY = ""
@@ -20,17 +20,17 @@ export async function getPropertyData(): Promise<PropertyData> {
 export async function getUserData(username: string) {
 
     fetch(BASE_URL + "something" + username + "&key=" + API_KEY)
-        .then(response => response.json());
+        .then(response => response.json()
+        .then(data => localStorage.setItem("userData", data)));
 }
 
-export async function updateUserData(userData: UserData) {
+export async function updateUserData() {
 
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userData)
+        body: localStorage.getItem("userData")
     };
     fetch(BASE_URL + "something?key=" + API_KEY, requestOptions)
-        .then(response => response.json()
-        .then(data => {return JSON.parse(data)}));
+        .then(response => response.json());
 }

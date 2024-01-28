@@ -21,7 +21,7 @@ export default function PropertySlidingView(props: {menuState: string, property1
         }
         else if (stretched)
         {
-            prop1DivControls.set({zIndex:1, width: "100vw" })
+            prop1DivControls.set({zIndex: 1, width: "100vw" })
             prop2DivControls.set({ width: "50vw", left: "50%" })
             prop1DivControls.start({ width: "50vw"})
             prop1DivControls.start({ zIndex: 0, transition: {delay: 0.5} })
