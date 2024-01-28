@@ -21,4 +21,38 @@
     border-radius: 50%;
 }
 
+.row-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
 
+.option-title h1 {
+    font-size: 2rem;
+}
+
+.option-title {
+    width: 200px;
+}
+
+.row-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+}
+
+.option-btn {
+    height: 30px;
+    width: 100px;
+    padding: 5px 10px;
+    background-color: darkgray;
+}
+
+.active-btn {
+    background-color: blueviolet;
+}
+
+input {
+    display: none;
+}

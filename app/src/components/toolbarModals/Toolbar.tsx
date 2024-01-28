@@ -5,6 +5,7 @@ import settingsIcon from '/settings.svg'
 import leaderIcon from '/leaderboard.svg'
 import ProfileModal from './ProfileModal'
 import LeaderboardModal from './LeaderboardModal'
+import SettingsModal from './SettingsModal'
 
 export default function Toolbar() {
     const [leaderboardVisible, setLeaderboardVisible] = useState(false);
