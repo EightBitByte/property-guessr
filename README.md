@@ -1,6 +1,6 @@
 > property-guessr
 
-A property guessing game based on the Melissa API and (TBD) API.
+A property guessing game based on the Melissa API and our homebrew [property-guessr API](https://www.github.com/EightBitByte/property-guessr-api).
 
 ## Running Locally
 

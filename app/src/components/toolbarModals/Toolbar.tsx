@@ -24,12 +24,21 @@ export default function Toolbar() {
         setLeaderboardVisible(!leaderboardVisible);
     };
 
+    const getCurrentToggleFn = () => {
+        if (leaderboardVisible)
+            toggleLeaderboardVisibility();
+        else if (settingsVisible)
+            toggleSettingsVisibility();
+        else
+            toggleProfileVisibility();
+    }
+
     return (
         <>
         {profileVisible && <ProfileModal toggleFn={toggleProfileVisibility}></ProfileModal>}
         {leaderboardVisible && <LeaderboardModal toggleFn={toggleLeaderboardVisibility}></LeaderboardModal>}
         {settingsVisible && <SettingsModal toggleFn={toggleSettingsVisibility}></SettingsModal>}
-        {(settingsVisible || profileVisible || leaderboardVisible) && <div className="blur"></div>}
+        {(settingsVisible || profileVisible || leaderboardVisible) && <div className="blur" onClick={getCurrentToggleFn}></div>}
         <div id="toolbar-wrap">
             <button className="tool-btn" id="leaderboard-btn" onClick={toggleLeaderboardVisibility}>
                 <img src={leaderIcon}></img>
