@@ -1,37 +1,33 @@
-import { useState } from "react"
 import "./Property.css"
-import { motion, AnimationControls } from "framer-motion"
- 
-type PropertyData = {
-
-}
+import { PropertyData } from "../utils/property.types"
 
 const TEST_LAT = 33.6149
 const TEST_LON = -117.8731
 
 const MY_KEY = "AIzaSyAF6wI4shBdxCHqpcn0Sl5VFG8L57Kk7Eg"
 
-export default function Property(props: {divAnim: AnimationControls, priceShown: boolean}) {
+export default function Property(props: {priceShown: boolean, propertyData: PropertyData}) {
 
-    const [propertyData, setPropertyData] = useState({})
+    const data = props.propertyData
+    console.log(props.propertyData)
 
     return (
-        <motion.div animate={props.divAnim} className="property-bg" style={{backgroundImage: 'url("https://maps.googleapis.com/maps/api/streetview?location=33.6149%2C-117.8731&size=800x1200&key=AIzaSyAF6wI4shBdxCHqpcn0Sl5VFG8L57Kk7Eg")'}}>
+        <div className="property-bg" style={{backgroundImage: 'url("https://maps.googleapis.com/maps/api/streetview?location=' + data.latitude + '%2C' + data.longitude + '&size=800x1200&key=' + MY_KEY + '")'}}>
             <div className="property-overlay">
-                <Title address="420 Pluh Ave" year="2013" price={1000000} priceShown={props.priceShown}/>
-                <StreetPreview lat={TEST_LAT} lon={TEST_LON} mode=""></StreetPreview>
+                <Title address={data.address} year={data.last_sale_date} price={data.assessed_total} priceShown={props.priceShown}/>
+                <StreetPreview lat={data.latitude} lon={data.longitude} mode="static"></StreetPreview>
             </div>
-        </motion.div>
+        </div>
     )
 }
 
-function Title(props: {address: string, year: string, price: number, priceShown: boolean}) {    
+function Title(props: {address: string, year: string, price: string, priceShown: boolean}) {    
 
     return (
         <div className="property-title">
-            <h1>{props.address}</h1>
-            <h2 className="year-text">Sold in <strong>{props.year}</strong> for</h2>
-            <h2>${props.priceShown ? props.price : "??????"}</h2>
+            <p className="address-text">{props.address}</p>
+            <h2 className="year-text">Assesed Value</h2>
+            <p className="price-text">${props.priceShown ? props.price : "??????"}</p>
         </div>
     )
 }
