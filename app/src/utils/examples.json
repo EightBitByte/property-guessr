@@ -1,0 +1,23 @@
+{
+    "data": [
+        {
+            "address": "622 Thomas Street, Woodland, CA, 95776",
+            "assessed_total": "193034",
+            "build_year": "1973",
+            "last_sale_date": "20111028",
+            "last_sale_price": "160000",
+            "latitude": 38.672731,
+            "longitude": -121.76065
+        },
+        {
+            "address": "622 Thomas Street, Woodland, CA, 95776",
+            "assessed_total": "193034",
+            "build_year": "1973",
+            "last_sale_date": "20111028",
+            "last_sale_price": "160000",
+            "latitude": 38.672731,
+            "longitude": -121.76065
+        }
+    ]
+}
+
