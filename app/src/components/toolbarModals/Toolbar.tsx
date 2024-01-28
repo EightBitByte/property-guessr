@@ -12,7 +12,8 @@ export default function Toolbar() {
     const [leaderboardVisible, setLeaderboardVisible] = useState(false);
     const [settingsVisible, setSettingsVisible] = useState(false);
     const [profileVisible, setProfileVisible] = useState(false);
-    const [loginVisible, setLoginVisible] = useState(true);
+
+    const userData = localStorage.getItem("userData")
 
     const toggleProfileVisibility = () => {
         setProfileVisible(!profileVisible);
@@ -26,28 +27,22 @@ export default function Toolbar() {
         setLeaderboardVisible(!leaderboardVisible);
     };
 
-    const toggleLoginVisibility = () => {
-        setLoginVisible(!loginVisible);
-    };
-
     const getCurrentToggleFn = () => {
         if (leaderboardVisible)
             toggleLeaderboardVisibility();
         else if (settingsVisible)
             toggleSettingsVisibility();
-        else if (loginVisible)
-            toggleLoginVisibility();
         else
             toggleProfileVisibility();
     }
 
     return (
         <>
-        {loginVisible && <LoginModal toggleFn={toggleLoginVisibility}></LoginModal>}
-        {profileVisible && <ProfileModal toggleFn={toggleProfileVisibility}></ProfileModal>}
+        {profileVisible && (!userData ? <LoginModal toggleFn={toggleProfileVisibility} submitMode="get" currentStreak={0}></LoginModal> :
+        <ProfileModal toggleFn={toggleProfileVisibility} userData={JSON.parse(userData)}></ProfileModal>)}
         {leaderboardVisible && <LeaderboardModal toggleFn={toggleLeaderboardVisibility}></LeaderboardModal>}
         {settingsVisible && <SettingsModal toggleFn={toggleSettingsVisibility}></SettingsModal>}
-        {(settingsVisible || profileVisible || leaderboardVisible || loginVisible) && <div className="blur" onClick={getCurrentToggleFn}></div>}
+        {(settingsVisible || profileVisible || leaderboardVisible) && <div className="blur" onClick={getCurrentToggleFn}></div>}
         <div id="toolbar-wrap">
             <button className="tool-btn" id="leaderboard-btn" onClick={toggleLeaderboardVisibility}>
                 <img src={leaderIcon}></img>

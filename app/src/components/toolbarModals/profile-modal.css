@@ -75,6 +75,10 @@
     filter: invert(28%) sepia(71%) saturate(5183%) hue-rotate(351deg) brightness(90%) contrast(112%);
 }
 
+#logout-btn:hover {
+    background-color: #184ba35b;
+}
+
 #logout-btn, #logout-btn img {
     width: var(--logout-btn-size);
     height: var(--logout-btn-size);
