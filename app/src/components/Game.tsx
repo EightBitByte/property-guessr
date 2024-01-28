@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { PropertyData, SAMPLE_PROPERTY } from "../utils/property.types"
 import { getPropertyData } from "./requests"
+import { updateUserData } from "./requests"
 
 import SelectMenu from './Select'
 import Streak from "./Streak"
@@ -14,6 +15,7 @@ export default function Game() {
     const [property1, setProperty1] = useState<PropertyData>(SAMPLE_PROPERTY)
     const [property2, setProperty2] = useState<PropertyData>(SAMPLE_PROPERTY)
     const [streak, setStreak] = useState<number>(0)
+    const [showLogin, setShowLogin] = useState<boolean>(false)
 
     useEffect (() => {
         async function loadPropertyData () {
@@ -31,9 +33,8 @@ export default function Game() {
         }
         
         if (menuState == "select")
-        {
             getNewProperty()
-        }
+
     }, [menuState])
 
     function chooseHigher() {
@@ -44,6 +45,11 @@ export default function Game() {
         }
         else
         {
+            if (localStorage.getItem("userData") == "{}")
+                setShowLogin(true)
+            else
+                updateUserData(JSON.parse(localStorage.getItem("userData")))
+
             setMenuState("reset")
         }
     }
@@ -56,6 +62,11 @@ export default function Game() {
         }
         else
         {
+            if (localStorage.getItem("userData") == null)
+                setShowLogin(true)
+            else
+                updateUserData(JSON.parse(localStorage.getItem("userData")))
+
             setMenuState("reset")
         }
     }
@@ -73,6 +84,7 @@ export default function Game() {
 
     return (
         <>
+            {showLogin ? null : null}
             <div className="game">
                 <PropertySlidingView property1={property1} property2={property2} menuState={menuState}/>
             </div>
