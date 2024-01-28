@@ -1,25 +1,10 @@
-import Property from "./Property"
 import { useState, useEffect } from "react"
-import { motion, useAnimationControls } from "framer-motion"
-import "./Game.css"
+import { PropertyData, SAMPLE_PROPERTY } from "../utils/property.types"
+import { getPropertyData } from "./requests"
+
 import SelectMenu from './Select'
 import Streak from "./Streak"
-
-import { PropertyData, SAMPLE_PROPERTY } from "../utils/property.types"
-import exampleJSON from "../utils/examples.json"
-
-async function getPropertyData(): Promise<PropertyData> {
-    
-    /*
-    fetch("stuff goes here").then(response => {
-        response.json().then(data => {
-            return JSON.parse(data)
-        })
-    })
-    */
-    const index = Math.floor(Math.random() * 3)
-    return exampleJSON.data[index]
-}
+import PropertySlidingView from "./PropertySlide"
 
 
 export default function Game() {
@@ -94,41 +79,5 @@ export default function Game() {
             <SelectMenu highFunc={chooseHigher} lowFunc={chooseLower} nextFunc={nextProperty} resetFunc={resetGame} screen={menuState}></SelectMenu>
             <Streak streak={streak}/>
         </>
-    )
-}
-
-function PropertySlidingView(props: {menuState: string, property1: PropertyData, property2: PropertyData}) {
-
-    const prop1DivControls = useAnimationControls()
-    const prop2DivControls = useAnimationControls()
-
-    const [stretched, setStretched] = useState(false)
-
-
-    useEffect(() => {
-        if (props.menuState != "select")
-        {
-            prop2DivControls.start({ width: "100vw", left: 0, transition: {delay: 1} })
-            setStretched(true)
-        }
-        else if (stretched)
-        {
-            prop1DivControls.set({zIndex:1, width: "100vw" })
-            prop2DivControls.set({ width: "50vw", left: "50%" })
-            prop1DivControls.start({ width: "50vw"})
-            prop1DivControls.start({ zIndex: 0, transition: {delay: 0.5} })
-            
-        }
-    }) 
-
-    return (
-        <div>
-            <motion.div initial={{width: "50vw"}} animate={prop1DivControls} className="property1">
-                <Property priceShown={true} propertyData={props.property1}/>
-            </motion.div>
-            <motion.div initial={{width: "50vw"}} animate={prop2DivControls} className="property2">
-                <Property priceShown={props.menuState != "select"} propertyData={props.property2}/>
-            </motion.div>
-        </div>
     )
 }
