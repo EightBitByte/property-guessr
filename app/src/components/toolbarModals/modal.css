@@ -28,7 +28,9 @@
     left: 1rem;
     width: var(--back-btn-size);
     height: var(--back-btn-size);
+    padding: 0;
 }
+
 
 .back-btn img {
     width: var(--back-btn-size);
