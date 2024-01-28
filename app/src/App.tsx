@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Toolbar from "./components/toolbarModals/Toolbar"
 import Game from './components/Game'
 

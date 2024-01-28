@@ -4,10 +4,10 @@ import { motion, useAnimationControls } from "framer-motion"
 import "./Game.css"
 import SelectMenu from './Select'
 
-import { PropertyData } from "../utils/property.types"
+import { PropertyData, SAMPLE_PROPERTY } from "../utils/property.types"
 import exampleJSON from "../utils/examples.json"
 
-function getPropertyData(n: number): PropertyData {
+async function getPropertyData(): Promise<PropertyData> {
     
     /*
     fetch("stuff goes here").then(response => {
@@ -16,8 +16,8 @@ function getPropertyData(n: number): PropertyData {
         })
     })
     */
-
-    return exampleJSON.data[n]
+    const index = Math.floor(Math.random() * 3)
+    return exampleJSON.data[index]
 }
 
 
@@ -25,30 +25,52 @@ export default function Game() {
 
     const [menuState, setMenuState] = useState("select")
 
-    const [property1, setProperty1] = useState<PropertyData>(getPropertyData(0))
-    const [property2, setProperty2] = useState<PropertyData>(getPropertyData(1))
+    const [property1, setProperty1] = useState<PropertyData>(SAMPLE_PROPERTY)
+    const [property2, setProperty2] = useState<PropertyData>(SAMPLE_PROPERTY)
 
     useEffect (() => {
-        setProperty1(getPropertyData(0))
-        setProperty2(getPropertyData(1))
-        console.log("got first property data")
+        async function loadPropertyData () {
+            setProperty1(await getPropertyData())
+            console.log("Initial property get")
+        }
+
+        loadPropertyData()
     }, [])
 
+    useEffect (() => {
+        async function getNewProperty () {
+            setProperty2(await getPropertyData())
+            console.log("New property get")
+        }
+        
+        if (menuState == "select")
+        {
+            getNewProperty()
+        }
+    }, [menuState])
+
     function chooseHigher() {
-        setMenuState("next")
+        if (property1.assessed_total <= property2.assessed_total)
+            setMenuState("next")
+        else
+            setMenuState("reset")
     }
 
     function chooseLower() {
-        setMenuState("reset")
+        if (property1.assessed_total >= property2.assessed_total)
+            setMenuState("next")
+        else
+            setMenuState("reset")
     }
 
     function nextProperty() {
         setMenuState("select")
-        //swap property data
+        setProperty1(property2)
     }
 
     function resetGame() {
         setMenuState("select")
+        setProperty1(property2)
     }
 
     return (
