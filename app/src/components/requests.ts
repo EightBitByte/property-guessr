@@ -17,6 +17,16 @@ export async function getPropertyData(): Promise<PropertyData> {
     return exampleJSON.data[index]
 }
 
+export async function getTopUsers(): Promise<UserData[]> {
+    
+    let users: UserData[] = []
+    fetch(BASE_URL + "something" + "&key=" + API_KEY)
+        .then(response => response.json()
+        .then(data => users = data));
+
+    return users
+}
+
 export async function getUserData(username: string) {
 
     fetch(BASE_URL + "something" + username + "&key=" + API_KEY)
