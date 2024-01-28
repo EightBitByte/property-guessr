@@ -9,8 +9,8 @@ export default function LoginModal(props: {toggleFn: MouseEventHandler, submitMo
 
     const [username, setUsername] = useState("")
 
-    function updateData() {
-        let newUserData = {
+    function updateData(evt: React.MouseEvent) {
+        let newUserData: UserData = {
             username: username,
             correct_guesses: props.currentStreak,
             total_guesses: props.currentStreak + 1,
@@ -18,6 +18,12 @@ export default function LoginModal(props: {toggleFn: MouseEventHandler, submitMo
         }
         localStorage.setItem("userData", JSON.stringify(newUserData))
         updateUserData()
+        props.toggleFn(evt)
+    }
+
+    function getData(evt: React.MouseEvent) {
+        getUserData(username)
+        props.toggleFn(evt)
     }
 
     return (
@@ -25,7 +31,7 @@ export default function LoginModal(props: {toggleFn: MouseEventHandler, submitMo
             <div className="input-flex">
                 <input className="username-input" type="text" id="login-input" placeholder="Username" onChange={evt => {setUsername(evt.target.value)}}></input>
                 { props.submitMode == "update" && <button onClick={updateData} type="submit">Submit</button> }
-                { props.submitMode == "get" && <button onClick={() => {getUserData(username)}} type="submit">Submit</button> }
+                { props.submitMode == "get" && <button onClick={getData} type="submit">Submit</button> }
             </div>
         </Modal>
     )
