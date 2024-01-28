@@ -34,20 +34,23 @@ function OptionsBar(props: {children: ReactNode, optionTitle: string}) {
 }
 
 function SettingsModal(props: {toggleFn: MouseEventHandler<HTMLButtonElement>}) {
-    const [challengeState, setChallengeState] = useState(0);
-    const [accessibilityState, setAccessibilityState] = useState(false);
-    const [privacyState, setPrivacyState] = useState(false);
+    const [challengeState, setChallengeState] = useState(Number(localStorage.getItem("challengeState")));
+    const [accessibilityState, setAccessibilityState] = useState(Number(localStorage.getItem("accessibilityState")));
+    const [privacyState, setPrivacyState] = useState(Number(localStorage.getItem("privacyState")));
 
     const updateChallenge = (challengeNum: number) => {
         setChallengeState(challengeNum);
+        localStorage.setItem("challengeState", `${challengeNum}`) 
     }
 
-    const updateAccessibility = (isOn: boolean) => {
+    const updateAccessibility = (isOn: number) => {
         setAccessibilityState(isOn);
+        localStorage.setItem("accessibilityState", `${isOn}`) 
     }
 
-    const updatePrivacy = (isOn: boolean) => {
+    const updatePrivacy = (isOn: number) => {
         setPrivacyState(isOn);
+        localStorage.setItem("privacyState", `${isOn}`) 
     }
 
     return (
@@ -61,14 +64,14 @@ function SettingsModal(props: {toggleFn: MouseEventHandler<HTMLButtonElement>}) 
             </div>
             <div className="contrast-options">
                 <OptionsBar optionTitle="High Contrast">
-                    <OptionRadio rowName="accessibility" radioName="accessibility-0" btnText="On" changeFunc={updateAccessibility} isActive={!accessibilityState}></OptionRadio>
-                    <OptionRadio rowName="accessibility" radioName="accessibility-1" btnText="Off" changeFunc={updateAccessibility} isActive={accessibilityState}></OptionRadio>
+                    <OptionRadio rowName="accessibility" radioName="accessibility-0" btnText="Off" changeFunc={updateAccessibility} isActive={accessibilityState === 0}></OptionRadio>
+                    <OptionRadio rowName="accessibility" radioName="accessibility-1" btnText="On" changeFunc={updateAccessibility} isActive={accessibilityState === 1}></OptionRadio>
                 </OptionsBar>
             </div>
             <div className="private-options">
                 <OptionsBar optionTitle="Privacy">
-                    <OptionRadio rowName="privacy" radioName="privacy-0" btnText="On" changeFunc={updatePrivacy} isActive={!privacyState}></OptionRadio>
-                    <OptionRadio rowName="privacy" radioName="privacy-1" btnText="Off"changeFunc={updatePrivacy} isActive={privacyState}></OptionRadio>
+                    <OptionRadio rowName="privacy" radioName="privacy-0" btnText="Off" changeFunc={updatePrivacy} isActive={privacyState === 0}></OptionRadio>
+                    <OptionRadio rowName="privacy" radioName="privacy-1" btnText="On"changeFunc={updatePrivacy} isActive={privacyState === 1}></OptionRadio>
                 </OptionsBar>
             </div>
         </Modal>
