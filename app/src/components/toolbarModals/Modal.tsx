@@ -1,8 +1,8 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { ReactNode, MouseEventHandler } from "react";
 import backIcon from '/back.svg'
 import './modal.css'
 
-export default function Modal(props: {toggleFunc: MouseEventHandler<HTMLButtonElement>, title: string, children: ReactNode}) {
+export default function Modal(props: {toggleFunc: MouseEventHandler, title: string, children: ReactNode}) {
     return (
         <div className="center">
             <dialog className="modal" open>

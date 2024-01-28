@@ -37,9 +37,9 @@ export default function SelectMenu(props: {highFunc: MouseEventHandler, lowFunc:
         <div className="select-center">
             <div>
                 {optionsVisible && <div className="selection-menu">
-                    <button onClick={props.highFunc}><h1>Higher</h1></button>
+                    <button onClick={props.highFunc}><h1>HIGHER</h1></button>
                     <h1>OR</h1>
-                    <button onClick={props.lowFunc}><h1>Lower</h1></button>
+                    <button onClick={props.lowFunc}><h1>LOWER</h1></button>
                 </div>}
                 <div className="reset-next-menu">
                     <motion.button initial={{visibility: "hidden"}} animate={nextButtonAnim} onClick={props.nextFunc}><h1>Next</h1></motion.button>

@@ -21,11 +21,17 @@
     border-radius: 50%;
 }
 
+.challenge-options {
+    margin-top: 1rem;
+}
+
 .row-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
 }
 
 .option-title h1 {
@@ -33,7 +39,7 @@
 }
 
 .option-title {
-    width: 200px;
+    width: 250px;
 }
 
 .row-buttons {

@@ -53,8 +53,10 @@ button:active {
 
 button h1 {
     margin: 0;
+    font-family: "KoHo", sans-serif;
 }
 
 h2 {
     margin: 4px;
+    font-family: "KoHo", sans-serif;
 }
