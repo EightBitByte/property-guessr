@@ -27,6 +27,7 @@ export default function Toolbar() {
         <>
         {profileVisible && <ProfileModal toggleFn={toggleProfileVisibility}></ProfileModal>}
         {leaderboardVisible && <LeaderboardModal toggleFn={toggleLeaderboardVisibility}></LeaderboardModal>}
+        {settingsVisible && <SettingsModal toggleFn={toggleSettingsVisibility}></SettingsModal>}
         {(settingsVisible || profileVisible || leaderboardVisible) && <div className="blur"></div>}
         <div id="toolbar-wrap">
             <button className="tool-btn" id="leaderboard-btn" onClick={toggleLeaderboardVisibility}>
