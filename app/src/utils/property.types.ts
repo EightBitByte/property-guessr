@@ -23,3 +23,10 @@ export const SAMPLE_PROPERTY = {
     latitude: 0,
     longitude: 0
 }
+
+export type UserData = {
+    username: string,
+    correct_guesses: number,
+    total_guesses: number,
+    streak: number
+}
