@@ -8,16 +8,17 @@ import PropertySlidingView from "./PropertySlide"
 import LoginModal from "./toolbarModals/LoginModal"
 
 
-function updateUserStreak(currentStreak: number)
-{
-    const userData: UserData = JSON.parse(localStorage.getItem("userData"))
-    
+function updateUserStreak(currentStreak: number, userData: UserData)
+{   
     const bestStreak = userData.streak < currentStreak ? currentStreak : userData.streak
+    const correct_guesses = userData.correct_guesses + currentStreak
+    const total_guesses = userData.total_guesses + currentStreak + 1
+        
 
     const newData: UserData = {
         username: userData.username,
-        correct_guesses: userData.correct_guesses + currentStreak,
-        total_guesses: userData.total_guesses + currentStreak + 1,
+        correct_guesses: correct_guesses,
+        total_guesses: total_guesses,
         streak: bestStreak
     }
 
@@ -62,11 +63,12 @@ export default function Game() {
         else
         {
             setMenuState("reset")
+            const userJSON = localStorage.getItem("userData")
 
-            if (localStorage.getItem("userData") == null)
+            if (userJSON == null)
                 setTimeout(() => setShowLogin(true), 1500)
             else
-                updateUserStreak(streak)
+                updateUserStreak(streak, JSON.parse(userJSON))
         }
     }
 
@@ -79,11 +81,12 @@ export default function Game() {
         else
         {
             setMenuState("reset")
+            const userJSON = localStorage.getItem("userData")
 
-            if (localStorage.getItem("userData") == null)
+            if (userJSON == null)
                 setTimeout(() => setShowLogin(true), 1500)
             else
-                updateUserStreak(streak)
+                updateUserStreak(streak, JSON.parse(userJSON))
         }
     }
 

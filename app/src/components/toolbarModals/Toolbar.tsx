@@ -39,7 +39,7 @@ export default function Toolbar() {
     return (
         <>
         {profileVisible && (!userData ? <LoginModal toggleFn={toggleProfileVisibility} submitMode="get" currentStreak={0}></LoginModal> :
-        <ProfileModal toggleFn={toggleProfileVisibility} userData={JSON.parse(localStorage.getItem("userData"))}></ProfileModal>)}
+        <ProfileModal toggleFn={toggleProfileVisibility} userData={JSON.parse(userData)}></ProfileModal>)}
         {leaderboardVisible && <LeaderboardModal toggleFn={toggleLeaderboardVisibility}></LeaderboardModal>}
         {settingsVisible && <SettingsModal toggleFn={toggleSettingsVisibility}></SettingsModal>}
         {(settingsVisible || profileVisible || leaderboardVisible) && <div className="blur" onClick={getCurrentToggleFn}></div>}
