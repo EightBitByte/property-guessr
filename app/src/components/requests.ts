@@ -13,8 +13,8 @@ export async function getPropertyData(): Promise<PropertyData> {
         })
     })
     
-    //const index = Math.floor(Math.random() * 3)
-    // return exampleJSON.data[index]
+    const index = Math.floor(Math.random() * 3)
+    return exampleJSON.data[index]
 
     return propertyData
 }
