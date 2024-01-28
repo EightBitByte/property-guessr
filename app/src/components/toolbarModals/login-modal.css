@@ -1,0 +1,33 @@
+.username-input {
+    display: block;
+    width: 40%;
+    height: 30px;
+    padding: 0 1rem;
+}
+
+.input-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    flex: 1;
+}
+
+button[type="submit"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 15px;
+}
+
+#login-modal {
+    width: 30vw;
+    height: 20vh;
+    margin-left: calc(30vw / -2);
+    margin-top: calc(20vh / -2);
+}
+
+#login-modal h1 {
+    font-size: 2.5rem;
+}
