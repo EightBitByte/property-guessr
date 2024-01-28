@@ -5,10 +5,14 @@ import peteIcon from '/pete.jpg'
 import newIcon from '/plant.svg'
 import topTenIcon from '/medal.svg'
 import accurateIcon from '/accurate.svg'
+import logoutIcon from '/logout.svg'
 
 export default function ProfileModal(props: {toggleFn: MouseEventHandler<HTMLButtonElement>}) {
     return (
         <Modal toggleFunc={props.toggleFn} title="Profile">
+        <button id="logout-btn">
+            <img id="logout-img" src={logoutIcon}></img>
+        </button>
         <div className="profile-hero">
             <img src={peteIcon}></img>
             <div className="profile-info">
