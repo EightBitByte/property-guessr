@@ -2,19 +2,37 @@
     "data": [
         {
             "address": "622 Thomas Street, Woodland, CA, 95776",
-            "assessed_total": "193034",
+            "assessed_total": 193034,
+            "assessed_total_formatted": "$193,034",
             "build_year": "1973",
-            "last_sale_date": "20111028",
-            "last_sale_price": "160000",
+            "last_sale_date": 20111028,
+            "last_sale_date_formatted": "2011/10/28",
+            "last_sale_price": 160000,
+            "last_sale_price_formatted": "$160,000",
             "latitude": 38.672731,
             "longitude": -121.76065
         },
         {
-            "address": "622 Thomas Street, Woodland, CA, 95776",
-            "assessed_total": "193034",
+            "address": "701 Thomas Street, Woodland, CA, 95776",
+            "assessed_total": 173090,
+            "assessed_total_formatted": "$173,090",
             "build_year": "1973",
-            "last_sale_date": "20111028",
-            "last_sale_price": "160000",
+            "last_sale_date": 20111028,
+            "last_sale_date_formatted": "2011/10/28",
+            "last_sale_price": 160000,
+            "last_sale_price_formatted": "$160,000",
+            "latitude": 38.672731,
+            "longitude": -121.76065
+        },
+        {
+            "address": "649 Thomas Street, Woodland, CA, 95776",
+            "assessed_total": 201032,
+            "assessed_total_formatted": "$201,032",
+            "build_year": "1973",
+            "last_sale_date": 20111028,
+            "last_sale_date_formatted": "2011/10/28",
+            "last_sale_price": 160000,
+            "last_sale_price_formatted": "$160,000",
             "latitude": 38.672731,
             "longitude": -121.76065
         }
